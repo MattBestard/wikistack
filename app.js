@@ -5,9 +5,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const layout = require('./views/layout');
 const models = require('./models');
-const PORT = 1337;
+const PORT = 3000;
 
-// models.authenticate()
+// models.db.authenticate()
 //   .then(() => {
 //   console.log('connected to the database');
 // });
