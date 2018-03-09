@@ -13,12 +13,16 @@ const PORT = 1337;
 // });
 
 const init = async () => {
-  await models.User.sync();
-  await models.Page.sync();
+  // await models.User.sync();
+  // await models.Page.sync();
+
+  await models.db.sync({force: true});
   app.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);
   });
 }
+
+init();
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -28,5 +32,3 @@ app.get('/', (req, res, next) => {
   // res.send("<h1>Hello World!</h1>");
   res.send(layout(''));
 });
-
-
