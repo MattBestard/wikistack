@@ -5,7 +5,9 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const layout = require('./views/layout');
 const models = require('./models');
-const PORT = 3000;
+const wikiRouter = require('./routes/wiki');
+const userRouter = require('./routes/user');
+const PORT = 1337;
 
 // models.db.authenticate()
 //   .then(() => {
@@ -32,3 +34,6 @@ app.get('/', (req, res, next) => {
   // res.send("<h1>Hello World!</h1>");
   res.send(layout(''));
 });
+
+app.use('/user', userRouter);
+app.use('/wiki', wikiRouter);
