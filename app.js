@@ -7,6 +7,7 @@ const layout = require('./views/layout');
 const models = require('./models');
 const wikiRouter = require('./routes/wiki');
 const userRouter = require('./routes/user');
+const Sequelize = require('sequelize');
 const PORT = 1337;
 
 // models.db.authenticate()
@@ -30,9 +31,12 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 
-app.get('/', (req, res, next) => {
+app.get('/', async (req, res, next) => {
   // res.send("<h1>Hello World!</h1>");
-  res.send(layout(''));
+  const pages = await [models.Page.findAll()];
+  console.log(models.Page);
+  
+  res.send(layout(pages));
 });
 
 app.use('/user', userRouter);

@@ -29,7 +29,11 @@ module.exports = (content) => html`<!DOCTYPE html>
         </div>
       </div>
       <div class="container content">
-        $${content}
+        <ul>
+          ${content.map((elem) => {
+            return  `<li><a href=/wiki/${elem.slug}>${elem.title}</a></li>`;
+          })}
+        </ul>
       </div>
       <hr/>
       <div id="footer" class="container text-muted">
